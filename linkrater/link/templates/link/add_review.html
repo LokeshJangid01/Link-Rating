@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Add review{% endblock %}
+
+{% block content %}
+    <h1 class="mb-6 text-3xl text-purple-800 font-bold">Add review</h1>
+
+    <form method="post" action="." class="space-y-4">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="py-4 px-8 bg-purple-700 text-white">Submit</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h1 class="mb-6 text-3xl text-purple-800 font-bold">{{ link.name }}</h1>
+    <p class="text-slate-600"><span class="font-bold">Url:</span> {{ link.url }}</p>
+    <p class="text-slate-600"><span class="font-bold">Rating:</span> {{ link.get_rating }}</p>
+
+    <a href="{% url 'link:add_review' link.pk %}" class="mt-6 py-4 px-8 inline-block bg-purple-900 text-white">Add review</a>
+
+    <hr class="my-6">
+
+    <h2 class="mb-6 text-xl font-bold text-purple-800">Reviews</h2>
+
+    {% for review in link.reviews.all %}
+        <div class="mb-4 py-4 px-6 bg-purple-100">
+            <h3 class="text-xl font-bold text-purple-800">{{ review.user.username }}</h3>
+
+            <p class="text-xs"><span class="font-bold">Rating:</span> {{ review.rating }}</p>
+
+            <p class="mt-6">
+                {{ review.content }}
+            </p>
+        </div>
+    {% endfor %}
+{% endblock %}
